@@ -41,3 +41,18 @@ There can be situation where thread.interrupt() method is not stopping the worki
 if (thread.currentThread().isInterrupted())
       System.out.println("Thread is interruped");
 ```  
+
+
+3) Daemon Threads
+
+Daemon threads low prioirty thread where it can't prevent JVM from stopping execution. We would like to chance to priority of our thread (make it daemon thread) so that won't continue execution when we interrupt the therad, i.e. , ```thread.interrupt()``` .
+
+```
+thread.setDaemon(true);
+        
+thread.start();
+
+thread.interrupt();
+```
+
+With this method, we don't need ```if (thread.currentThread().isInterrupted())``` to stop the execution of the thread.

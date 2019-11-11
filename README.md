@@ -21,3 +21,23 @@ It means performing multiple tasks simultaneously. In the previous example, if y
 In a multi-core environment, concurrency can be achieved via parallelism in which multiple tasks are executed simultaneously. 
 
 
+
+
+# Threads
+
+There can be situation where we would like to stop the threads such as to clean up the resouces kept by thread or in case of misbehaving.
+
+There can be multiple way to stop the thread.
+
+1) Thread.interrupt()
+
+Interrupt is a awailable to each thread object to interrupt the ongoing thread. 
+
+2) Thread.currentThread().isInterrupted() 
+
+There can be situation where thread.interrupt() method is not stopping the working thread. In order to force thread to stop, we can write if statement to check whether we have a signal to intterupt the thread.
+
+```
+if (thread.currentThread().isInterrupted())
+      System.out.println("Thread is interruped");
+```  

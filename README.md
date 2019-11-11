@@ -56,3 +56,5 @@ thread.interrupt();
 ```
 
 With this method, we don't need ```if (thread.currentThread().isInterrupted())``` to stop the execution of the thread.
+
+This is way to prevent a thread from blocking our app from exiting. 

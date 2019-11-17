@@ -58,3 +58,10 @@ thread.interrupt();
 With this method, we don't need ```if (thread.currentThread().isInterrupted())``` to stop the execution of the thread.
 
 This is way to prevent a thread from blocking our app from exiting. 
+
+
+## Notes
+
+Reference variables are allocated in heap if they are a class member, if not, they will be allocated in the stack and will point to object which is in Heap.
+
+Threads cannot share local variables which are stored in the stack section of the memory. The reason: Local variables and parameters allocate on a thread's method-call stack. As a result, each thread receives its own copy of those variables. In contrast, threads can share class fields and instance fields because those variables do not allocate on a thread's method-call stack. Instead, they allocate in shared heap memory—as part of classes (class fields) or objects (instance fields).

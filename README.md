@@ -59,6 +59,13 @@ With this method, we don't need ```if (thread.currentThread().isInterrupted())``
 
 This is way to prevent a thread from blocking our app from exiting. 
 
+## Critical Section
+
+Critical section is a code segment which includes shared resources. The operation on it needs to be Atomic, in other words, only one thread should have an access to the critical section while others are waiting for permission.
+
+In order to syncronize thread access on shared resources, java provides syncronized blocks with two different taste, object level or method level.
+
+Have a look at code!
 
 ## Notes
 

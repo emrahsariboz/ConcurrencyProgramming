@@ -70,7 +70,7 @@ Have a look at code!
 But, what operations in Java are atomic and don't need to get synchronized?
 
 All reference assignments are atomic (including the getters and setters)
-All primitive data types except double and long. Java doesn't guarantee atomicity on these operations. To synchronize them, volatile keywoard is used. 
+All primitive data types except double and long. Java doesn't guarantee atomicity on these operations. To synchronize them, **volatile** keywoard is used. 
 
 ## Notes
 

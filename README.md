@@ -25,17 +25,17 @@ In a multi-core environment, concurrency can be achieved via parallelism in whic
 
 # Threads
 
-There can be situation where we would like to stop the threads such as to clean up the resouces kept by thread or in case of misbehaving.
+There can be a situation where we would like to stop the threads such as to clean up the resources kept by thread or in case of misbehaving.
 
-There can be multiple way to stop the thread.
+There can be multiple ways to stop the thread.
 
 1) Thread.interrupt()
 
-Interrupt is a awailable to each thread object to interrupt the ongoing thread. 
+The interrupt is available to each thread object to interrupt the ongoing thread. 
 
 2) Thread.currentThread().isInterrupted() 
 
-There can be situation where thread.interrupt() method is not stopping the working thread. In order to force thread to stop, we can write if statement to check whether we have a signal to intterupt the thread.
+There can be a situation where the thread.interrupt() method is not stopping the working thread. To force a thread to stop, we can write if statement to check whether we have a signal to interrupt the thread.
 
 ```
 if (thread.currentThread().isInterrupted())
@@ -45,7 +45,7 @@ if (thread.currentThread().isInterrupted())
 
 3) Daemon Threads
 
-Daemon threads low prioirty thread where it can't prevent JVM from stopping execution. We would like to chance to priority of our thread (make it daemon thread) so that won't continue execution when we interrupt the therad, i.e. , ```thread.interrupt()``` .
+Daemon threads low priority thread where it can't prevent JVM from stopping the execution. We would like to change to the priority of our thread (make it daemon thread) so that won't continue execution when we interrupt the thread, i.e., ```thread.interrupt()``` .
 
 ```
 thread.setDaemon(true);
@@ -57,18 +57,23 @@ thread.interrupt();
 
 With this method, we don't need ```if (thread.currentThread().isInterrupted())``` to stop the execution of the thread.
 
-This is way to prevent a thread from blocking our app from exiting. 
+This is a way to prevent a thread from blocking our app from exiting. 
 
 ## Critical Section
 
-Critical section is a code segment which includes shared resources. The operation on it needs to be Atomic, in other words, only one thread should have an access to the critical section while others are waiting for permission.
+The critical section is a code segment that includes shared resources. The operation on it needs to be Atomic, in other words, only one thread should have access to the critical section while others are waiting for permission.
 
-In order to syncronize thread access on shared resources, java provides syncronized blocks with two different taste, object level or method level.
+To synchronize thread access on shared resources, java provides synchronized blocks with two different tastes, object-level or method level.
 
 Have a look at code!
 
+But, what operations in Java are atomic and don't need to get synchronized?
+
+All reference assignments are atomic (including the getters and setters)
+All primitive data types except double and long. Java doesn't guarantee atomicity on these operations. To synchronize them, volatile keywoard is used. 
+
 ## Notes
 
-Reference variables are allocated in heap if they are a class member, if not, they will be allocated in the stack and will point to object which is in Heap.
+Reference variables are allocated in the heap if they are a class member, if not, they will be allocated in the stack and will point to object which is in Heap.
 
-Threads cannot share local variables which are stored in the stack section of the memory. The reason: Local variables and parameters allocate on a thread's method-call stack. As a result, each thread receives its own copy of those variables. In contrast, threads can share class fields and instance fields because those variables do not allocate on a thread's method-call stack. Instead, they allocate in shared heap memory—as part of classes (class fields) or objects (instance fields).
+Threads cannot share local variables which are stored in the stack section of the memory. The reason: Local variables and parameters allocate on a thread's method-call stack. As a result, each thread receives its copy of those variables. In contrast, threads can share class fields and instance fields because those variables do not allocate on a thread's method-call stack. Instead, they allocate in shared heap memory—as part of classes (class fields) or objects (instance fields).
